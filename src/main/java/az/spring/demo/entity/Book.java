@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 public class Book {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long isbn;
     private String title;
@@ -20,8 +20,8 @@ public class Book {
     private Double price;
     private String description;
     private Boolean available;
-    @OneToMany(mappedBy = "book")
-    List<Borrower> borrowers = new ArrayList<>();
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Borrower> borrowers = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;

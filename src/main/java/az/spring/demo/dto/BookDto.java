@@ -1,6 +1,7 @@
 package az.spring.demo.dto;
 
 import az.spring.demo.entity.Author;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Data
 public class BookDto {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotNull
     private Long isbn;
@@ -22,6 +24,6 @@ public class BookDto {
     @NotBlank
     private String description;
     private Boolean available;
-    List<BorrowerDto> borrowers = new ArrayList<>();
-    private Author author;
+    private List<BorrowerDto> borrowers = new ArrayList<>();
+    private AuthorDto author;
 }

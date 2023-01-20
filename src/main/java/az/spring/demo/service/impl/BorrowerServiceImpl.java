@@ -25,10 +25,7 @@ public class BorrowerServiceImpl implements BorrowerService {
         borrowerr.setDue_date(borrowerDto.getDue_date());
         borrowerr.setReturn_date(borrowerDto.getReturn_date());
 
-        Book book = new Book();
-        BookDto bookDto = borrowerDto.getBook();
-        book.setId(bookDto.getId());
-        borrowerr.setBook(book);
+
         borrowerRepository.save(borrowerr);
     }
 
@@ -49,16 +46,6 @@ public class BorrowerServiceImpl implements BorrowerService {
         borrowerDto.setDue_date(borrower.getDue_date());
         borrowerDto.setReturn_date(borrower.getReturn_date());
 
-        Book book = borrower.getBook();
-        BookDto bookDto = new BookDto();
-        bookDto.setId(book.getId());
-        bookDto.setIsbn(book.getIsbn());
-        bookDto.setName(book.getName());
-        bookDto.setDescription(book.getDescription());
-        bookDto.setPrice(book.getPrice());
-        bookDto.setTitle(book.getTitle());
-        bookDto.setAvailable(book.getAvailable());
-        borrowerDto.setBook(bookDto);
 
         return borrowerDto;
     }

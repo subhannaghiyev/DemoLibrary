@@ -20,18 +20,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin")
                 .password("admin4321")
-                .roles("ADMIN")
-                .and()
-                .withUser("librarian")
-                .password("librarian1234")
-                .roles("USER");
+                .roles("ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        String adminSecurity = "\"/users/saveBook\",\"/users/deleteBook\",\"/users/updateBook\",\"/users/";
         http.authorizeRequests()
-                .antMatchers("/users/saveBook","/users/deleteBook","/users/updateBook","/users/showAllLibrarian","/users/saveLibrarian")
+                .antMatchers("/users/saveBook", "/users/deleteBook", "/users/updateBook", "/users/showAllLibrarian", "/users/saveLibrarian")
                 .hasAnyRole("ADMIN")
                 .antMatchers("/users/getAllBook")
                 .permitAll()
@@ -43,6 +39,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();

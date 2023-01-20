@@ -1,6 +1,7 @@
 package az.spring.demo.dto;
 
 import az.spring.demo.entity.Book;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Max;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Data
 public class AuthorDto {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotNull(message = "name shouldn't be null")
     private String name;
@@ -22,5 +24,5 @@ public class AuthorDto {
     private Long age;
     @NotBlank
     private String birthplace;
-    List<Book> books = new ArrayList<>();
+    List<BookDto> books = new ArrayList<>();
 }

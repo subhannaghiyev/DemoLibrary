@@ -1,6 +1,7 @@
 package az.spring.demo.dto;
 
 import az.spring.demo.entity.Borrower;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Data
 public class LibrarianDto {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotNull
     private String name;
@@ -20,5 +22,5 @@ public class LibrarianDto {
     private String username;
     @NotBlank
     private String address;
-    List<Borrower> borrowerList = new ArrayList<>();
+    List<BorrowerDto> borrowerList = new ArrayList<>();
 }
